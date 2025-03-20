@@ -33,6 +33,7 @@ class ParallelWorkforce(Workforce):
             # 将任务发送给选定的 Worker，无需等待其他任务发送完毕
             await self._channel.post_task(task, self.node_id, assignee)
             self._pending_tasks.remove(task)
+```
             
 在上述伪代码中，`dependencies_resolved()` 用于判断任务依赖是否都已完成。这样一来，Workforce 一次可以发布多个彼此独立的子任务，多个 Agent Worker 会并行领取并执行各自任务，而不再局限于队首一个。  
 
