@@ -27,17 +27,27 @@ class ParallelWorkforce(Workforce):
     async def _post_ready_tasks(self) -> None:
         if not self._pending_tasks:
             return
-        ready_tasks = [t for t in self._pending_tasks if t.dependencies_resolved()]
+        # 获取所有已满足依赖的任务
+        ready_tasks = [t for t in self._pending_tasks if self.task_manager.dependencies_resolved(t)]
         for task in ready_tasks:
             assignee = self._find_assignee(task)
-            # 将任务发送给选定的 Worker，无需等待其他任务发送完毕
+            # 批量发送任务，无需等待前一任务完成
             await self._channel.post_task(task, self.node_id, assignee)
             self._pending_tasks.remove(task)
 ```
             
-在上述伪代码中，`dependencies_resolved()` 用于判断任务依赖是否都已完成。这样一来，Workforce 一次可以发布多个彼此独立的子任务，多个 Agent Worker 会并行领取并执行各自任务，而不再局限于队首一个。  
+在上述伪代码中，`dependencies_resolved()` 用于判断任务依赖是否都已完成。这样一来，Workforce 一次可以发布多个彼此独立的子任务，多个 Agent Worker 会并行领取并执行各自任务，而不再局限于队首一个。
 
-为了实现依赖追踪，可以扩展 `Task` 对象，增加诸如 `depends_on` 列表以及依赖计数等属性，动态更新任务的就绪状态。  
+**事实上，Camel 中已经有一个 `TaskManager`，其中包含 `set_tasks_dependence` 函数**，用于管理任务依赖。然而，当前在 `workforce.py` 中，`_post_ready_tasks(self) -> None` 的默认行为是：
+
+这意味着，**当前实现假设所有任务线性依赖**，因此只发送队首任务。这种线性队列机制限制了任务并发性。
+
+```python
+r"""Send all the pending tasks that have all the dependencies met to
+the channel, or directly return if there is none. For now, we will
+directly send the first task in the pending list because all the tasks
+are linearly dependent."""
+```
 
 学术上已有类似设计：如 DynTaskMAS 框架使用动态图调度子任务，并由异步并行执行引擎根据任务 DAG 最大化并行度。采用这种任务图调度后，当任务可并行时就不必串行等待，能够大幅减少整体完成时间。  
 
