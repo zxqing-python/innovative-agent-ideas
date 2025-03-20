@@ -43,9 +43,6 @@ class ParallelWorkforce(Workforce):
 
 ## 🧑‍🤝‍🧑 团队成员
 
-本项目由三位创始人共同发起，致力于打造具有任务并行和浏览器操作能力的创新型 Agent。  
-## 🧑‍🤝‍🧑 团队成员
-
 本项目由三位创始人共同发起，致力于打造具有任务并行和浏览器操作能力的创新型 Agent。
  - **[@XinqiLiucute](https://github.com/XinqiLiucute)**
  - **[@YuchenGe-AM](https://github.com/YuchenGe-AM)**  
