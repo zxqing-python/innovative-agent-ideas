@@ -55,6 +55,7 @@ are linearly dependent."""
 
 本项目由三位创始人共同发起，致力于打造具有任务并行和浏览器操作能力的创新型 Agent。
  - **[@XinqiLiucute](https://github.com/XinqiLiucute)**
+ - **[@Xiaobo1003](https://github.com/Xiaobo1003)**
  - **[@YuchenGe-AM](https://github.com/YuchenGe-AM)**  
  - **[@zxqing-python](https://github.com/zxqing-python)**   
 
