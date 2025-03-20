@@ -2,7 +2,7 @@
 
 ## 💡 项目简介
 
-这是一个基于 Camel-AI 和 OWL 的创新项目，旨在实现任务并行和浏览器操作等智能功能。该项目由我们3人小团队共同提出，致力于打造一个既具备 OWL 特性又能高效处理任务并行的智能 Agent。希望能吸引更多开发者一起参与和探讨！
+这是一个基于 Camel-AI 和 OWL 的创新项目，旨在实现任务并行和浏览器操作等智能功能。该项目由我们5人小团队共同提出，致力于打造一个既具备 OWL 特性又能高效处理任务并行的智能 Agent。希望能吸引更多开发者一起参与和探讨！
 
 ## 🌟 创意背景
 
@@ -54,6 +54,7 @@ are linearly dependent."""
 ## 🧑‍🤝‍🧑 团队成员
 
 本项目由三位创始人共同发起，致力于打造具有任务并行和浏览器操作能力的创新型 Agent。
+ - **[@WonderSeven](https://github.com/WonderSeven)**
  - **[@XinqiLiucute](https://github.com/XinqiLiucute)**
  - **[@Xiaobo1003](https://github.com/Xiaobo1003)**
  - **[@YuchenGe-AM](https://github.com/YuchenGe-AM)**  
